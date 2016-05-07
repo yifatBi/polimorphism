@@ -13,8 +13,15 @@ private:
     double m_sugarAmount;
 public:
     Fruit(const int id, const vector<string> &params);
-    virtual double calcPrice(const int adsFactor);
-    virtual void write(ostream& out) const;
+
+    virtual ~Fruit() { }
+
+    virtual void FarmAbs() const override {
+
+    }
+
+    virtual double calcPrice(const int adsFactor)override;
+    virtual void write(ostream& out) const override;
 };
 
 

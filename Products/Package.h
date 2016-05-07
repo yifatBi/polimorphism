@@ -14,11 +14,20 @@ private:
     vector<string> m_productsNames;
     int m_coloursNum;
     void printProductsNames(ostream &out)const;
+
+public:
+    virtual void ProductAbs() const override {
+
+    }
+
 public:
     Package(const int id, vector<std::string> params);
+
+    virtual ~Package() { }
+
     void setColursNum(const int colours);
-    virtual double calcPrice(const int adsFactor);
-    virtual void write(ostream& out) const;
+    virtual double calcPrice(const int adsFactor) override ;
+    virtual void write(ostream& out) const override;
 
 };
 

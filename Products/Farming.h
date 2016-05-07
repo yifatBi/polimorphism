@@ -17,13 +17,19 @@ private:
     int m_seasonsNum;
     int m_suppliersNum;
 public:
-    Farming(const int id, vector<std::string> params);
+    virtual void ProductAbs() const override {
 
+    }
+
+    virtual ~Farming() { }
+
+    Farming(const int id, vector<std::string> params);
+    virtual void FarmAbs() const = 0;
     void setFarmingType(const int type);
     void setSeasonsNum(const int seasons);
     void setSuppliersNum(const int suppliers);
-    virtual double calcPrice(const int adsFactor);
-    virtual void write(ostream& out) const;
+    virtual double calcPrice(const int adsFactor) override ;
+    virtual void write(ostream& out) const override ;
 
 };
 

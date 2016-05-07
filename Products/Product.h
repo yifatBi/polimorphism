@@ -25,7 +25,8 @@ class Product
 public:
 	Product() {};
 	Product(const int id, vector<std::string> params);
-	~Product();
+	virtual ~Product();
+	virtual void ProductAbs() const = 0;
 	const int getId()const{return m_id;}
 
 	virtual void read(istream& in);

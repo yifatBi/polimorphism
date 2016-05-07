@@ -15,6 +15,9 @@ private:
     void printNonMilkProfucts(ostream &out)const;
 public:
     MilkOther(const int id, vector<std::string> params);
+
+    virtual ~MilkOther() { }
+
     virtual double calcPrice(const int adsFactor);
     virtual void write(ostream& out) const;
 };

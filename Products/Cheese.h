@@ -13,6 +13,7 @@ private:
     int m_tops;
 public:
     Cheese(const int id, vector<std::string> params);
+    virtual ~Cheese(){};
     void setTops(const int tops);
     virtual double calcPrice(const int adsFactor);
     virtual void write(ostream& out) const;

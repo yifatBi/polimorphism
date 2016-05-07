@@ -19,12 +19,18 @@ private:
     int m_coloursNum;
     double m_fatPrecentege;
 public:
+    virtual void ProductAbs() const override {
+
+    }
+
+    virtual ~Milk() { }
+
     Milk(const int id, vector<std::string> params);
     void setMilkType(const int type);
     void setColoursNum(const int colours);
     void setFatPrecentege(const double fat);
-    virtual double calcPrice(const int adsFactor);
-    virtual void write(ostream& out) const;
+    virtual double calcPrice(const int adsFactor) override ;
+    virtual void write(ostream& out) const override ;
 };
 
 

@@ -6,7 +6,7 @@ const int ADD_PRODUCT= 1;
     const int CHANGE_FACTOR =2;
     const int CALC_VALUE= 3;
     const int PRINT_SHOP= 4;
-    Product p;
+//    Product p;
     try {
         int action;
         string actionString;

@@ -158,38 +158,52 @@ void SuperMarket::addProduct(const string& id,const string &values) {
 		case(PACKAGE):
 			newProduct = new Package(stoi(id),productVals);
 			cout<<"this is package"<<endl;
+			cout<<*newProduct<<endl;
+			cout<<endl<<"price : "<< newProduct->calcPrice(m_factor_ads)<<endl;
 			break;
 		case (FRUIT):
 			newProduct = new Fruit(stoi(id),productVals);
 			cout<<"This is Fruit"<<endl;
+			cout<<*newProduct<<endl;
+			cout<<endl<<"price : "<< newProduct->calcPrice(m_factor_ads)<<endl;
 			break;
 		case(VEGTEBALE):
 			newProduct = new Vegtebale(stoi(id),productVals);
 			cout<<"This is Vegtebale"<<endl;
+			cout<<*newProduct<<endl;
+			cout<<endl<<"price : "<< newProduct->calcPrice(m_factor_ads)<<endl;
 			break;
 		case(OTHER_MILK):
 			newProduct = new MilkOther(stoi(id),productVals);
 			cout<<"Other Milk"<<endl;
+			cout<<*newProduct<<endl;
+			cout<<endl<<"price : "<< newProduct->calcPrice(m_factor_ads)<<endl;
 			break;
 		case(DRINK_MILK):
 			newProduct = new Milk(stoi(id),productVals);
 			cout<< "DRINK milk"<<endl;
+			cout<<*newProduct<<endl;
+			cout<<endl<<"price : "<< newProduct->calcPrice(m_factor_ads)<<endl;
 			break;
 		case(YOGURT_MILK):
 			newProduct = new Milk(stoi(id),productVals);
 			cout<< "YOGURT milk"<<endl;
+			cout<<*newProduct<<endl;
+			cout<<endl<<"price : "<< newProduct->calcPrice(m_factor_ads)<<endl;
 			break;
 		case(CHEESE_MILK):
 			newProduct = new Cheese(stoi(id),productVals);
 			cout<<"This is cheese"<<endl;
+			cout<<*newProduct<<endl;
+			cout<<endl<<"price : "<< newProduct->calcPrice(m_factor_ads)<<endl;
 			break;
 		default:
-			newProduct = new Product(stoi(id),productVals);
+//			newProduct = new Product(stoi(id),productVals);
 			break;
 	}
-	newProduct->print();
+//	newProduct->print();
 //			cout<<*newProduct<<endl;
-			cout<<endl<<"price : "<< newProduct->calcPrice(m_factor_ads)<<endl;
+//			cout<<endl<<"price : "<< newProduct->calcPrice(m_factor_ads)<<endl;
 
 }
 
