@@ -31,11 +31,6 @@ void Milk::write(ostream &out) const {
     out<<" "<<m_name<<" ("<<m_milkType<<","<<m_coloursNum<<","<<m_fatPrecentege<<")";
 }
 
-void Milk::print() const {
-    Product::print();
-    cout<<" "<<m_name<<" ("<<m_milkType<<","<<m_coloursNum<<","<<m_fatPrecentege<<")";
-}
-
 Milk::Milk(const int id, vector<std::string> params):Product(id,params) {
     m_name=(params.at(5)+" "+params.at(6));
     setMilkType(stoi(params.at(7)));

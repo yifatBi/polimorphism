@@ -47,7 +47,7 @@ const int ADD_PRODUCT= 1;
                 }
                 case (CALC_VALUE):
                     cout<<"calc value"<<endl;
-                    s.culcAllProductsPrice();
+                    cout<<s.culcAllProductsPrice();
                     break;
                 case (PRINT_SHOP):
                     cout<<"print shop"<<endl;

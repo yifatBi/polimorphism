@@ -65,7 +65,7 @@ Product::Product(const int id, vector<std::string> params):m_id(id) {
 }
 
 void Product::print() const {
-	cout<< m_id << " "<< m_line<< " "<<m_shelf<<" ("<<m_amount<<","<<m_productType<<","<<m_area<<")";
+	write(cout);
 }
 
 

@@ -1,11 +1,5 @@
 
 #include "SuperMarket.h"
-#include "Farming.h"
-#include "Vegtebale.h"
-#include "Fruit.h"
-#include "Milk.h"
-#include "Cheese.h"
-#include "Package.h"
 
 #define FRUIT 12
 #define VEGTEBALE 11
@@ -174,7 +168,7 @@ void SuperMarket::addProduct(const string& id,const string &values) {
 			cout<<"This is Vegtebale"<<endl;
 			break;
 		case(OTHER_MILK):
-			newProduct = new Milk(stoi(id),productVals);
+			newProduct = new MilkOther(stoi(id),productVals);
 			cout<<"Other Milk"<<endl;
 			break;
 		case(DRINK_MILK):
@@ -193,8 +187,9 @@ void SuperMarket::addProduct(const string& id,const string &values) {
 			newProduct = new Product(stoi(id),productVals);
 			break;
 	}
-			cout<<*newProduct<<endl;
-			cout<<"price : "<< newProduct->calcPrice(m_factor_ads)<<endl;
+	newProduct->print();
+//			cout<<*newProduct<<endl;
+			cout<<endl<<"price : "<< newProduct->calcPrice(m_factor_ads)<<endl;
 
 }
 

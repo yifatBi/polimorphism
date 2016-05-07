@@ -17,10 +17,6 @@ void Fruit::write(ostream &out) const {
     out<<" ("<<m_sugarAmount<<")";
 }
 
-void Fruit::print() const {
-    Farming::print();
-    cout<<" ("<<m_sugarAmount<<")";
-}
 
 
 

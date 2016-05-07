@@ -13,11 +13,6 @@ void Farming::write(ostream &out) const {
     out<<" "<<m_name<<" ("<<m_farmingType<<","<<m_seasonsNum<<","<<m_suppliersNum<<")";
 }
 
-void Farming::print() const {
-    Product::print();
-    cout<<" "<<m_name<<" ("<<m_farmingType<<","<<m_seasonsNum<<","<<m_suppliersNum<<")";
-}
-
 void Farming::setFarmingType(const int type) {
     if(type!=FRUIT_TYPE&&type!=VEG_TYPE)
         throw "Wrong Farm type";

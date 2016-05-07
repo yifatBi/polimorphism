@@ -1,6 +1,11 @@
 #pragma once
 
-#include "Product.h"
+#include "Products/Product.h"
+#include "Products/Vegtebale.h"
+#include "Products/Fruit.h"
+#include "Products/Cheese.h"
+#include "Products/Package.h"
+#include "Products/MilkOther.h"
 
 class SuperMarket
 {

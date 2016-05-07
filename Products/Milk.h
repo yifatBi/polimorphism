@@ -25,7 +25,6 @@ public:
     void setFatPrecentege(const double fat);
     virtual double calcPrice(const int adsFactor);
     virtual void write(ostream& out) const;
-    virtual void print()const;
 };
 
 

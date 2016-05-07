@@ -17,10 +17,6 @@ void Vegtebale::write(ostream &out) const {
     out<<" ("<<m_vitamins<<")";
 }
 
-void Vegtebale::print() const {
-    Farming::print();
-    cout<<" ("<<m_vitamins<<")";
-}
 
 
 

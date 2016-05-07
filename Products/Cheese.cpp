@@ -23,10 +23,6 @@ void Cheese::write(ostream &out) const {
     out<<" ("<<m_tops<<")";
 }
 
-void Cheese::print() const {
-    Milk::print();
-    cout<<" ("<<m_tops<<")";
-}
 
 
 

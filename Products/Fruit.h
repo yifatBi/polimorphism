@@ -15,7 +15,6 @@ public:
     Fruit(const int id, const vector<string> &params);
     virtual double calcPrice(const int adsFactor);
     virtual void write(ostream& out) const;
-    virtual void print()const;
 };
 
 

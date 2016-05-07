@@ -16,7 +16,6 @@ public:
     void setTops(const int tops);
     virtual double calcPrice(const int adsFactor);
     virtual void write(ostream& out) const;
-    virtual void print()const;
 
 };
 

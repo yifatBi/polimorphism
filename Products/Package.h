@@ -13,13 +13,12 @@ private:
     int m_numberOfProducts;
     vector<string> m_productsNames;
     int m_coloursNum;
+    void printProductsNames(ostream &out)const;
 public:
     Package(const int id, vector<std::string> params);
-    void setProductsNames();
+    void setColursNum(const int colours);
     virtual double calcPrice(const int adsFactor);
     virtual void write(ostream& out) const;
-    virtual void print()const;
-
 
 };
 
