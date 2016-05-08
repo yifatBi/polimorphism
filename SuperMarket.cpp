@@ -12,79 +12,6 @@
 #define MILK_INNER_TYPE_INDEX 7
 
 
-
-SuperMarket::SuperMarket(const string & name,int numOfProducts, const Product ** products):
-	m_name(name),m_numOfProducts(numOfProducts)
-{
-	m_products = new Product*[m_numOfProducts];
-	if (m_products == NULL)
-		throw "m_products allocation failed";
-	for (int i = 0;i < m_numOfProducts;i++) {
-//		if (typeid(*products[i]) == typeid(Food)) {
-//			Food* temp = new Food;
-//			if (temp == NULL)
-//				throw "food allocation failed";
-//			temp->setName(products[i]->getName());
-//			temp->setCost(products[i]->getCost());
-//			temp->setCalories(((Food*)products[i])->getCalories());
-//		}
-//		else if (typeid(*products[i]) == typeid(Medicine)) {
-//			Medicine* temp = new Medicine;
-//			if (temp == NULL)
-//				throw "Medicine allocation failed";
-//			temp->setName(products[i]->getName());
-//			temp->setCost(products[i]->getCost());
-//			temp->setPres(((Medicine*)products[i])->getPres());
-//		}
-	}
-}
-
-void SuperMarket::read(istream & in)
-{
-	cout << "Supermarket name : " << endl;
-	in >> m_name;
-	cout << "Ads Factor : " << endl;
-	in >> m_factor_ads;
-	readProducts(in);
-}
-
-void SuperMarket::readProducts(istream & in)
-{
-	cout << "Number of products " << endl;
-	in >> m_numOfProducts;
-	m_products = new Product*[m_numOfProducts];
-	if (m_products == NULL)
-		throw "error allocating products";
-	for (int i = 0; i < m_numOfProducts; i++) {
-		Product* newProduct = createProduct(in);
-
-		cout << "Enter products data" << endl;
-		newProduct->read(in);
-		m_products[i] = newProduct;
-	}
-
-}
-
-Product* SuperMarket::createProduct(istream & in)
-{
-	char choice;
-	cout << "Please enter F for food and M for medicine " << endl;
-	in >> choice;
-
-//	switch (choice) {
-//	case 'F':
-//	case 'f':
-//		return new Food;
-//		break;
-//	case 'M':
-//	case 'm':
-//		return new Medicine;
-//		break;
-//	default :
-//		return NULL;
-//	}
-}
-
 void SuperMarket::write(ostream & out) const
 {
 	out << "------------------" << endl;
@@ -94,9 +21,11 @@ void SuperMarket::write(ostream & out) const
 
 void SuperMarket::writeProducts(ostream & out) const
 {
-//	out << "There are " << m_numOfProducts << " products : " << endl;
-	for (int i = 0; i < m_numOfProducts;i++)
+	for (int i = 0; i < m_numOfProducts;i++) {
 		m_products[i]->write(out);
+		out<<endl;
+	}
+
 }
 
 SuperMarket::~SuperMarket()
@@ -109,23 +38,17 @@ SuperMarket::~SuperMarket()
 
 }
 
-
-
 ostream& operator<<(ostream& out, const SuperMarket& superm) {
 	superm.write(out);
 	return out;
 }
 
-
-istream& operator>>(istream& in, SuperMarket& superm) {
-	superm.read(in);
-	return in;
-}
-
 void SuperMarket::changeFactor(const int factor) {
 	m_factor_ads = factor;
 }
-
+/**
+ * split vector elements by space
+ */
 std::vector<std::string> &split(const std::string &s, char delim, std::vector<std::string> &elems) {
 	std::stringstream ss(s);
 	std::string item;
@@ -142,11 +65,46 @@ vector<std::string> split(const std::string &s, char delim) {
 void SuperMarket::addProduct(const string& id,const string &values) {
 	if (isIdExist(atoi(id.c_str())))
 		throw "this id already exist";
-	//split params of product and generate product type
+	//split params of product
 	vector<std::string> productVals = split(values, ' ');
 	//remove the first empty element
+	if(!productVals.at(0).length())
+		productVals.erase(productVals.begin()+0);
+	//add product
+	addProductToTheShop(id, productVals);
+}
+
+double SuperMarket::culcAllProductsPrice() const {
+	double shopPrice = 0;
+	for (int i = 0; i < m_numOfProducts; ++i) {
+		shopPrice+=m_products[i]->calcPrice(m_factor_ads);
+	}
+	return shopPrice;
+}
+
+bool SuperMarket::isIdExist(const int id) const {
+	for (int i = 0; i < m_numOfProducts; ++i) {
+		if(m_products[i]!=NULL&&(*m_products[i]).getId()==id){
+			return true;
+		}
+	}
+	return false;
+}
+
+void SuperMarket::addProduct(const string &values) {
+	//split params of product
+	vector<std::string> productVals = split(values, ' ');
+	string id=productVals[0];
+	//check if the id exist
+	if (isIdExist(stoi(id)))
+		throw "this id already exist";
+	//remove the first empty element
 	productVals.erase(productVals.begin()+0);
-	//get product type
+	addProductToTheShop(id, productVals);
+}
+
+Product *SuperMarket::createProduct(const string& id,const vector<string>& productVals) {
+	//generate the product type and create the product object
 	string productType= productVals.at(PRODUCT_TYPE_INDEX);
 	string productInnerType =productVals.at(FARMER_INNER_TYPE_INDEX);
 	if(productType==to_string(PACKAGE))productInnerType="";
@@ -158,67 +116,53 @@ void SuperMarket::addProduct(const string& id,const string &values) {
 		case(PACKAGE):
 			newProduct = new Package(stoi(id),productVals);
 			cout<<"this is package"<<endl;
-			cout<<*newProduct<<endl;
-			cout<<endl<<"price : "<< newProduct->calcPrice(m_factor_ads)<<endl;
 			break;
 		case (FRUIT):
 			newProduct = new Fruit(stoi(id),productVals);
 			cout<<"This is Fruit"<<endl;
-			cout<<*newProduct<<endl;
-			cout<<endl<<"price : "<< newProduct->calcPrice(m_factor_ads)<<endl;
 			break;
 		case(VEGTEBALE):
 			newProduct = new Vegtebale(stoi(id),productVals);
 			cout<<"This is Vegtebale"<<endl;
-			cout<<*newProduct<<endl;
-			cout<<endl<<"price : "<< newProduct->calcPrice(m_factor_ads)<<endl;
 			break;
 		case(OTHER_MILK):
 			newProduct = new MilkOther(stoi(id),productVals);
 			cout<<"Other Milk"<<endl;
-			cout<<*newProduct<<endl;
-			cout<<endl<<"price : "<< newProduct->calcPrice(m_factor_ads)<<endl;
 			break;
 		case(DRINK_MILK):
 			newProduct = new Milk(stoi(id),productVals);
 			cout<< "DRINK milk"<<endl;
-			cout<<*newProduct<<endl;
-			cout<<endl<<"price : "<< newProduct->calcPrice(m_factor_ads)<<endl;
 			break;
 		case(YOGURT_MILK):
 			newProduct = new Milk(stoi(id),productVals);
 			cout<< "YOGURT milk"<<endl;
-			cout<<*newProduct<<endl;
-			cout<<endl<<"price : "<< newProduct->calcPrice(m_factor_ads)<<endl;
 			break;
 		case(CHEESE_MILK):
 			newProduct = new Cheese(stoi(id),productVals);
 			cout<<"This is cheese"<<endl;
-			cout<<*newProduct<<endl;
-			cout<<endl<<"price : "<< newProduct->calcPrice(m_factor_ads)<<endl;
 			break;
 		default:
-//			newProduct = new Product(stoi(id),productVals);
-			break;
+			throw "invalid product type";
 	}
-//	newProduct->print();
-//			cout<<*newProduct<<endl;
-//			cout<<endl<<"price : "<< newProduct->calcPrice(m_factor_ads)<<endl;
-
+	return newProduct;
 }
 
-double SuperMarket::culcAllProductsPrice() const {
-	return 0;
+void SuperMarket::addProductToTheShop(const string &id, const vector<string> &values) {
+	Product** tempProductsArray = new Product*[m_numOfProducts + 1];
+	if(m_numOfProducts)
+		copy(m_products, m_products + m_numOfProducts, tempProductsArray);
+	tempProductsArray[m_numOfProducts]=createProduct(id,values);
+	if(m_products!=NULL)
+		delete[] m_products;
+	m_products=tempProductsArray;
+	m_numOfProducts++;
 }
 
-bool SuperMarket::isIdExist(const int id) const {
-	for (int i = 0; i < m_numOfProducts; ++i) {
-		if(m_products[i]!=NULL&&(*m_products[i]).getId()==id){
-			return true;
-		}
-	}
-	return false;
-}
+
+
+
+
+
 
 
 

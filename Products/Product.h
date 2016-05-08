@@ -1,3 +1,7 @@
+/**
+ * Basic functionality of shop product
+ * This is abstract can't be created itself
+ */
 #pragma once
 
 #include <iostream>

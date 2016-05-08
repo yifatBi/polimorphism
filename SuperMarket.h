@@ -18,14 +18,34 @@ private:
 public:
 	SuperMarket() :m_numOfProducts(0), m_products(NULL) {};
 	SuperMarket(const string& name,const int factor_ads) :m_numOfProducts(0),m_name(name),m_factor_ads(factor_ads), m_products(NULL) {};
-	SuperMarket(const string& name, int numOfProducts, const Product** products);
 	void changeFactor(const int factor);
+	/**
+	 * Calc the shop value according all products
+	 */
 	double culcAllProductsPrice()const;
-	void read(istream& in);
-	void readProducts(istream& in);
-	Product* createProduct(istream& in);
+	/**
+	 * create product with the correct type
+	 */
+	Product* createProduct(const string& id,const vector<string>& productVals);
+	/**
+	 * add product from console, id and values
+	 */
 	void addProduct(const string& id,const string& values);
+	/**
+	 * add product to the shop products list
+	 */
+	void addProductToTheShop(const string &id, const vector<string> &values);
+	/**
+	 * add product with string of params list seperated by space
+	 */
+	void addProduct(const string& values);
+	/*
+	 * out shop
+	 */
 	void write(ostream& out) const;
+	/**
+	 * out shop products
+	 */
 	void writeProducts(ostream& out) const;
 	
 	~SuperMarket();
