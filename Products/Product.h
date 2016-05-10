@@ -23,23 +23,20 @@ class Product
 	int m_shelf;
 	double m_amount;
 	double m_cost;
-	int m_productType;
 	int m_area;
 
 public:
 	Product() {};
 	Product(const int id, vector<std::string> params);
 	virtual ~Product();
-	virtual void ProductAbs() const = 0;
+	virtual int productType() const = 0;
 	const int getId()const{return m_id;}
 
-	virtual void read(istream& in);
 	virtual void write(ostream& out) const;
 	virtual void print()const;
 	void setShelf(const int shelf);
 	void setLine(const char line);
 	void setAmount(const double amount);
-	void setProductType(const int productType);
 	void setArea(const int area);
 	virtual double calcPrice(const int adsFactor);
 };

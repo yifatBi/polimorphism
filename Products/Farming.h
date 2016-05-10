@@ -12,20 +12,18 @@
 
 class Farming: public Product {
 private:
-    int m_farmingType;
     string m_name;
     int m_seasonsNum;
     int m_suppliersNum;
 public:
-    virtual void ProductAbs() const override {
-
+    virtual int productType() const override {
+        return FARMING;
     }
 
     virtual ~Farming() { }
 
     Farming(const int id, vector<std::string> params);
-    virtual void FarmAbs() const = 0;
-    void setFarmingType(const int type);
+    virtual int farmingType() const = 0;
     void setSeasonsNum(const int seasons);
     void setSuppliersNum(const int suppliers);
     virtual double calcPrice(const int adsFactor) override ;

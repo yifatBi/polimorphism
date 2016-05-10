@@ -9,18 +9,9 @@ Product::~Product()
 {
 }
 
-void Product::read(istream & in)
-{
-	cout << "Please enter cost : " << endl;
-	in >> m_cost;
-}
-
 void Product::write(ostream & out) const
 {
-//	out << typeid(*this).name() + 1<< endl;
-//	out << "Name : " << m_name << endl;
-//	out << "Price : " << m_cost << endl;
-	out<< m_id << " "<< m_line<< " "<<m_shelf<<" ("<<m_amount<<","<<m_productType<<","<<m_area<<")";
+	out<< m_id << " "<< m_line<< " "<<m_shelf<<" ("<<m_amount<<","<<productType()<<","<<m_area<<")";
 }
 
 void Product::setShelf(const int shelf) {
@@ -42,11 +33,6 @@ void Product::setAmount(const double amount) {
 	m_amount=amount;
 }
 
-void Product::setProductType(const int productType) {
-	if(productType!=FARMING&&productType!=MILK&&productType!=PACKAGE)
-		throw "Wrong product type";
-	m_productType = productType;
-}
 
 void Product::setArea(const int area) {
 	m_area = area;
@@ -60,7 +46,6 @@ Product::Product(const int id, vector<std::string> params):m_id(id) {
 	setLine(params.at(0)[0]);
 	setShelf(stoi(params.at(1)));
 	setAmount(stod(params.at(2)));
-	setProductType(stoi(params.at(3)));
 	setArea(stoi(params.at(4)));
 }
 

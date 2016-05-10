@@ -19,8 +19,9 @@ private:
     int m_coloursNum;
     double m_fatPrecentege;
 public:
-    virtual void ProductAbs() const override {
 
+    virtual int productType() const override {
+        return MILK;
     }
 
     virtual ~Milk() { }

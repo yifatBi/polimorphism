@@ -16,9 +16,10 @@ private:
     void printProductsNames(ostream &out)const;
 
 public:
-    virtual void ProductAbs() const override {
-
+    virtual int productType() const override {
+        return PACKAGE;
     }
+
 
 public:
     Package(const int id, vector<std::string> params);

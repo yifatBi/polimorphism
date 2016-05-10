@@ -12,7 +12,10 @@ class Vegtebale: public Farming {
 private:
    double m_vitamins;
 public:
-    virtual void FarmAbs() const override {}
+
+    virtual int farmingType() const override {
+        return VEG_TYPE;
+    }
 
     virtual ~Vegtebale() { }
 

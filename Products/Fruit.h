@@ -16,8 +16,8 @@ public:
 
     virtual ~Fruit() { }
 
-    virtual void FarmAbs() const override {
-
+    virtual int farmingType() const override {
+        return FRUIT_TYPE;
     }
 
     virtual double calcPrice(const int adsFactor)override;
