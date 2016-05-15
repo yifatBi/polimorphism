@@ -1,10 +1,8 @@
-//
-// Created by yifat biezuner on 07/05/2016.
-//
-
 #include "MilkOther.h"
 
 MilkOther::MilkOther(const int id, vector<std::string> params) : Milk(id, params) {
+    if(params.size()<(MILK_PARAMS_NUM+1))
+        throw "invalid num of Other Milk params";
     m_numOfNonMilkProducts = stoi(params.back());
     for(int i=0;i<m_numOfNonMilkProducts;i++){
         m_namesNonMilkProducts.push_back(params[INDEX_OF_FIRST_NAME+i]);

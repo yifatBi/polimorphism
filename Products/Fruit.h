@@ -1,13 +1,11 @@
-//
-// Created by yifat biezuner on 07/05/2016.
-//
-
 #ifndef POLIMORPHISM_FRUIT_H
 #define POLIMORPHISM_FRUIT_H
 
-
+#define FRUIT_PARAMS_NUM 10
 #include "Farming.h"
-
+/**
+ * Fruit product of type Farming
+ */
 class Fruit: public Farming {
 private:
     double m_sugarAmount;

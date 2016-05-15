@@ -67,6 +67,8 @@ void SuperMarket::addProduct(const string& id,const string &values) {
 		throw "this id already exist";
 	//split params of product
 	vector<std::string> productVals = split(values, ' ');
+	if(productVals.size()<MIN_PRODUCT_PARAMS)
+		throw "invalid product params";
 	//remove the first empty element
 	if(!productVals.at(0).length())
 		productVals.erase(productVals.begin()+0);
@@ -98,48 +100,42 @@ void SuperMarket::addProduct(const string &values) {
 	//check if the id exist
 	if (isIdExist(stoi(id)))
 		throw "this id already exist";
+	//check if valid number of params
+	if(productVals.size()<MIN_PRODUCT_PARAMS)
+		throw "invalid product params";
 	//remove the first empty element
 	productVals.erase(productVals.begin()+0);
 	addProductToTheShop(id, productVals);
 }
 
 Product *SuperMarket::createProduct(const string& id,const vector<string>& productVals) {
-	//generate the product type and create the product object
 	string productType= productVals.at(PRODUCT_TYPE_INDEX);
 	string productInnerType =productVals.at(FARMER_INNER_TYPE_INDEX);
 	if(productType==to_string(PACKAGE))productInnerType="";
 	else if(productType==to_string(MILK))productInnerType=productVals.at(MILK_INNER_TYPE_INDEX);
-	cout<< productType+productInnerType<<endl;
 	string product = productType+productInnerType;
 	Product* newProduct;
 	switch (atoi(product.c_str())){
 		case(PACKAGE):
 			newProduct = new Package(stoi(id),productVals);
-			cout<<"this is package"<<endl;
 			break;
 		case (FRUIT):
 			newProduct = new Fruit(stoi(id),productVals);
-			cout<<"This is Fruit"<<endl;
 			break;
 		case(VEGTEBALE):
 			newProduct = new Vegtebale(stoi(id),productVals);
-			cout<<"This is Vegtebale"<<endl;
 			break;
 		case(OTHER_MILK):
 			newProduct = new MilkOther(stoi(id),productVals);
-			cout<<"Other Milk"<<endl;
 			break;
 		case(DRINK_MILK):
 			newProduct = new Milk(stoi(id),productVals);
-			cout<< "DRINK milk"<<endl;
 			break;
 		case(YOGURT_MILK):
 			newProduct = new Milk(stoi(id),productVals);
-			cout<< "YOGURT milk"<<endl;
 			break;
 		case(CHEESE_MILK):
 			newProduct = new Cheese(stoi(id),productVals);
-			cout<<"This is cheese"<<endl;
 			break;
 		default:
 			throw "invalid product type";

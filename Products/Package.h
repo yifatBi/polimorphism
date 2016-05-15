@@ -1,13 +1,11 @@
-//
-// Created by yifat biezuner on 07/05/2016.
-//
-
 #ifndef POLIMORPHISM_PACKAGE_H
 #define POLIMORPHISM_PACKAGE_H
 
 
 #include "Product.h"
-
+/**
+ * Package product
+ */
 class Package: public Product{
 private:
     int m_numberOfProducts;
@@ -22,7 +20,7 @@ public:
 
 
 public:
-    Package(const int id, vector<std::string> params);
+    Package(const int id,const vector<std::string> params);
 
     virtual ~Package() { }
 

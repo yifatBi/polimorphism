@@ -6,7 +6,9 @@
 #include "Products/Cheese.h"
 #include "Products/Package.h"
 #include "Products/MilkOther.h"
-
+/**
+ * Super market include products and can add products, clac all shop products, change ads factor or print the store.
+ */
 class SuperMarket
 {
 private:

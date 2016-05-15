@@ -5,6 +5,8 @@
 #include "Fruit.h"
 
 Fruit::Fruit(const int id, const vector<string> &params):Farming(id,params) {
+    if(params.size()<FRUIT_PARAMS_NUM)
+        throw "invalid num of Fruit params";
     m_sugarAmount = stod(params.at(9));
 }
 

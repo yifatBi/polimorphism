@@ -1,6 +1,3 @@
-//
-// Created by yifat biezuner on 07/05/2016.
-//
 
 #ifndef POLIMORPHISM_FARMING_H
 #define POLIMORPHISM_FARMING_H
@@ -9,7 +6,10 @@
 #define VEG_TYPE 1
 #define MIN_SEASON 1
 #define MAX_SEASON 2
-
+#define FARMING_PARAMS 9
+/**
+ * Abstract class of farming product
+ */
 class Farming: public Product {
 private:
     string m_name;
@@ -22,7 +22,7 @@ public:
 
     virtual ~Farming() { }
 
-    Farming(const int id, vector<std::string> params);
+    Farming(const int id,const vector<std::string> params);
     virtual int farmingType() const = 0;
     void setSeasonsNum(const int seasons);
     void setSuppliersNum(const int suppliers);

@@ -42,7 +42,9 @@ double Product::calcPrice(const int adsFactor) {
 	return m_area*m_amount*adsFactor;
 }
 
-Product::Product(const int id, vector<std::string> params):m_id(id) {
+Product::Product(const int id,const vector<std::string> params):m_id(id) {
+	if(params.size()<MIN_PRODUCT_PARAMS)
+		throw "invalid num of product params";
 	setLine(params.at(0)[0]);
 	setShelf(stoi(params.at(1)));
 	setAmount(stod(params.at(2)));

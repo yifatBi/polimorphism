@@ -1,7 +1,3 @@
-//
-// Created by yifat biezuner on 07/05/2016.
-//
-
 #include "Farming.h"
 
 double Farming::calcPrice(const int adsFactor) {
@@ -27,7 +23,9 @@ void Farming::setSuppliersNum(const int suppliers) {
 
 }
 
-Farming::Farming(const int id, vector<std::string> params):Product(id,params){
+Farming::Farming(const int id,const vector<std::string> params):Product(id,params){
+    if(params.size()<FARMING_PARAMS)
+        throw "invalid num of Farming params";
     m_name=params.at(5);
     setSeasonsNum(stoi(params.at(7)));
     setSuppliersNum(stoi(params.at(8)));

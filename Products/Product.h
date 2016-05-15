@@ -1,6 +1,7 @@
 /**
  * Basic functionality of shop product
  * This is abstract can't be created itself
+ * save product basic params
  */
 #pragma once
 
@@ -12,6 +13,7 @@
 #define PACKAGE 2
 #define MILK 3
 #define FARMING 1
+#define MIN_PRODUCT_PARAMS 5
 
 using namespace std;
 
@@ -22,12 +24,11 @@ class Product
 	char m_line;
 	int m_shelf;
 	double m_amount;
-	double m_cost;
 	int m_area;
 
 public:
 	Product() {};
-	Product(const int id, vector<std::string> params);
+	Product(const int id,const vector<std::string> params);
 	virtual ~Product();
 	virtual int productType() const = 0;
 	const int getId()const{return m_id;}
@@ -38,6 +39,7 @@ public:
 	void setLine(const char line);
 	void setAmount(const double amount);
 	void setArea(const int area);
+	//calc price of product according the algorithm
 	virtual double calcPrice(const int adsFactor);
 };
 ostream& operator<<(ostream& out, const Product& product);

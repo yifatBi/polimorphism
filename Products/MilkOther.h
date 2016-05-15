@@ -1,20 +1,18 @@
-//
-// Created by yifat biezuner on 07/05/2016.
-//
-
 #ifndef POLIMORPHISM_MILKOTHER_H
 #define POLIMORPHISM_MILKOTHER_H
 #define INDEX_OF_FIRST_NAME 10
 
 #include "Milk.h"
-
+/**
+ * Other Milk product of type Milk
+ */
 class MilkOther: public Milk {
 private:
     int m_numOfNonMilkProducts;
     vector<string> m_namesNonMilkProducts;
     void printNonMilkProfucts(ostream &out)const;
 public:
-    MilkOther(const int id, vector<std::string> params);
+    MilkOther(const int id, const vector<std::string> params);
 
     virtual ~MilkOther() { }
 

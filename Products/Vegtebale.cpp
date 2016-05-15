@@ -1,10 +1,8 @@
-//
-// Created by yifat biezuner on 07/05/2016.
-//
-
 #include "Vegtebale.h"
 
 Vegtebale::Vegtebale(const int id, const vector<string> &params):Farming(id,params) {
+    if(params.size()<VEG_PARAMS_NUM)
+        throw "invalid num of Vegtebale params";
     m_vitamins = stod(params.at(9));
 }
 

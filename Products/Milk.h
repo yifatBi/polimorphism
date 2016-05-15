@@ -11,7 +11,10 @@
 
 
 #include "Product.h"
-
+#define MILK_PARAMS_NUM 10
+/**
+ * Milk product
+ */
 class Milk: public Product {
 private:
    int m_milkType;
@@ -26,7 +29,7 @@ public:
 
     virtual ~Milk() { }
 
-    Milk(const int id, vector<std::string> params);
+    Milk(const int id,const vector<std::string> params);
     void setMilkType(const int type);
     void setColoursNum(const int colours);
     void setFatPrecentege(const double fat);

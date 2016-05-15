@@ -7,7 +7,10 @@
 
 
 #include "Farming.h"
-
+#define VEG_PARAMS_NUM 10
+/**
+ * Vegtebale product of type Farming
+ */
 class Vegtebale: public Farming {
 private:
    double m_vitamins;

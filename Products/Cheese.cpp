@@ -1,16 +1,14 @@
-//
-// Created by yifat biezuner on 07/05/2016.
-//
 
 #include "Cheese.h"
-
 void Cheese::setTops(const int tops) {
     if(tops<0)
         throw "Invalid tops num";
     m_tops=tops;
 }
 
-Cheese::Cheese(const int id, vector<std::string> params):Milk(id,params) {
+Cheese::Cheese(const int id,const vector<std::string> params):Milk(id,params) {
+    if(params.size()<CHEESE_PARAMS_NUM)
+        throw "invalid num of Cheese params";
     setTops(stoi(params.at(10)));
 }
 
